@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+ <html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Youth Celid Talks</title>
+</head>
+
+<style>
+  body {
+    background: url(fondo.png) 0 0;
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+  }
+
+  img {
+    margin: 0 auto;
+    padding: 0;
+    width: 20%;
+    height: auto;
+  }
+
+  input{
+     color: white;
+     font-family: Helvetica;
+     font-size: 20px;
+
+  }
+
+  div{
+    display: flex;
+    justify-content: center;
+  }
+  span{
+    color: white;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+  }
+  canvas{
+    margin: 0 auto;
+    display: block;
+    justify-content: center;
+  }
+  #texto_indicaciones{
+    font-size: 20px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+  }
+</style>
+
+<body>
+ <div id="imagen">
+  <img src="logo.png" alt="logo summit">
+ </div>
+ <div id="texto_indicaciones">
+ <p><strong>INDICACIONES</strong><br>
+    1. Sube tu mejor foto con forma cuadrada<br>
+    2. Haz click derecho sobre tu credencial<br>
+    3. Haz click en ‘Guardar imagen como’<br>
+    4. Compártela en tus redes sociales y<br>etiquetanos como @celidperu para darte like ♡
+  </p>
+  </div>
+  <div style="padding:10px">
+    <input type="file" name="myfile" id="photoupload" onchange="handleImage()" />
+  </div>
+  <span id="download" style="margin:10px"></span>
+  <canvas id="myCanvas" width="1000" height="1200"></canvas>
+</body>
+
+<script>
+  const handleImage = () => {
+    const image = document.getElementById("photoupload");
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    const imageObj1 = new Image();
+    const imageObj2 = new Image();
+    imageObj1.src = URL.createObjectURL(image.files[0]);
+    imageObj1.onload = function () {
+      ctx.drawImage(imageObj1, 230, 240, 560, 610);
+      imageObj2.src = "youth.png";
+      imageObj2.onload = function () {
+        ctx.drawImage(imageObj2, 0, 0, 1000, 1200);
+        document.getElementById("download").textContent = "Listo, descarga!";
+      }
+    };
+  }
+</script>
+
+</html>
